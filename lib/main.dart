@@ -13,10 +13,48 @@ class QuoteList extends StatefulWidget {
 
 class _QuoteListState extends State<QuoteList> {
   List<Quote> quotes = [
-    Quote(author: 'Luis', text: 'Demo 1'),
-    Quote(author: 'David', text: 'Demo 2'),
-    Quote(author: 'Yauri', text: 'Demo 3'),
+    Quote(
+        author: 'Luis',
+        text:
+            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. '),
+    Quote(
+        author: 'David',
+        text:
+            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. '),
+    Quote(
+        author: 'Yauri',
+        text:
+            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. '),
   ];
+
+  Widget quoteTemplate(quote) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.grey[600],
+              ),
+            ),
+            SizedBox(height: 6.0),
+            Text(
+              quote.author,
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.grey[800],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +67,7 @@ class _QuoteListState extends State<QuoteList> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: quotes
-            .map((quote) => Text('${quote.text} - ${quote.author}'))
-            .toList(),
+        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
       ),
     );
   }
